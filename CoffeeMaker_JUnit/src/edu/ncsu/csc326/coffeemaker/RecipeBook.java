@@ -55,15 +55,15 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String deleteRecipe(int recipeToDelete) {
-		if (recipeArray[recipeToDelete] != null) {
+		if (recipeToDelete < NUM_RECIPES && recipeArray[recipeToDelete] != null) {
 			String recipeName = recipeArray[recipeToDelete].getName();
-			recipeArray[recipeToDelete] = new Recipe();
+			recipeArray[recipeToDelete] = null;
 			return recipeName;
 		} else {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Returns the name of the recipe edited at the position specified
 	 * and null if the recipe does not exist.
@@ -72,9 +72,8 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) {
-		if (recipeArray[recipeToEdit] != null) {
+		if (recipeToEdit < NUM_RECIPES && recipeArray[recipeToEdit] != null) {
 			String recipeName = recipeArray[recipeToEdit].getName();
-			newRecipe.setName("");
 			recipeArray[recipeToEdit] = newRecipe;
 			return recipeName;
 		} else {
